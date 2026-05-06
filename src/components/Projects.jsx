@@ -3,10 +3,10 @@ import { Github, ExternalLink } from 'lucide-react';
 
 const projects = [
   {
-    title: "Patient Information Management",
-    description: "A robust system designed to manage patient records securely. Features role-based access control, appointment scheduling, and encrypted data storage.",
-    tech: ["React", "Node.js", "PostgreSQL", "JWT"],
-    github: "#",
+    title: "School Management System",
+    description: "A comprehensive full-stack platform for managing academic records. Features secure role-based access for students and teachers, rapid score submission, and academic performance visualizations.",
+    tech: ["React", "Express.js", "SQLite", "Tailwind CSS"],
+    github: "https://github.com/yabuxd/student-managment",
     demo: "#"
   },
   {
@@ -69,10 +69,10 @@ export default function Projects() {
                 <div className="flex justify-between items-start mb-6">
                   <h3 className="font-cinzel text-2xl text-white font-bold tracking-wide group-hover:text-gold-light transition-colors">{project.title}</h3>
                   <div className="flex gap-4">
-                    <a href={project.github} className="text-graphite-400 hover:text-white transition-colors" aria-label="GitHub">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-graphite-400 hover:text-white transition-colors" aria-label="GitHub">
                       <Github size={20} />
                     </a>
-                    <a href={project.demo} className="text-graphite-400 hover:text-white transition-colors" aria-label="Live Demo">
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-graphite-400 hover:text-white transition-colors" aria-label="Live Demo">
                       <ExternalLink size={20} />
                     </a>
                   </div>

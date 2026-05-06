@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import portfolioImg from '../asset/portfolio.png';
 
 export default function About() {
   return (
@@ -47,10 +48,14 @@ export default function About() {
             <div className="relative w-full aspect-[4/5] max-w-md mx-auto glass-card border border-graphite-700 p-4 transition-transform duration-700 hover:rotate-y-12">
               <div className="absolute inset-0 bg-gradient-to-tr from-graphite-900 via-transparent to-graphite-800 opacity-50"></div>
               <div className="w-full h-full border border-graphite-600/50 flex flex-col items-center justify-center relative overflow-hidden bg-graphite-950/80">
-                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-gold-burned/50 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-gold-burned/50 to-transparent"></div>
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-gold-burned/50 to-transparent z-10"></div>
+                <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-gold-burned/50 to-transparent z-10"></div>
                 
-                <span className="font-cinzel text-gold-burned/20 text-9xl font-bold">O.G</span>
+                <img 
+                  src={portfolioImg} 
+                  alt="Portfolio Profile" 
+                  className="w-full h-full object-cover filter brightness-90 contrast-110 transition-transform duration-700 group-hover:scale-105"
+                />
               </div>
             </div>
           </div>
