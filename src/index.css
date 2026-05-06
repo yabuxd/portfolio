@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Custom Scrollbar for Cinematic Feel */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #0f0f0f;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #404040;
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #B89741;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-graphite-900/40 backdrop-blur-md border border-graphite-800/50 shadow-xl;
+  }
+  
+  .glass-card-hover {
+    @apply hover:border-gold-burned/30 hover:bg-graphite-800/50 transition-all duration-300;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  }
+
+  .text-gold-glow {
+    text-shadow: 0 0 20px rgba(184, 151, 65, 0.3);
+  }
+  
+  .border-gradient {
+    border-image: linear-gradient(to right, #2b2b2b, #898989, #2b2b2b) 1;
+  }
+}
+
+/* Ambient Fog Effect via CSS pseudo-element on the body or a fixed div */
+.fog-overlay {
+  position: fixed;
+  inset: -150%;
+  pointer-events: none;
+  z-index: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(200,200,220, 0.03) 0%, transparent 20%),
+    radial-gradient(circle at 80% 70%, rgba(184, 151, 65, 0.02) 0%, transparent 20%);
+  filter: blur(40px);
+  animation: fog-drift 40s ease-in-out infinite alternate;
+}
+
+@keyframes fog-drift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-2%, 2%) scale(1.05); }
+  100% { transform: translate(2%, -2%) scale(1); }
+}
