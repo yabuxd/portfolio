@@ -44,16 +44,17 @@
   }
 }
 
-/* Ambient Fog Effect via CSS pseudo-element on the body or a fixed div */
+/* Ambient Fog Effect — GPU-composited via will-change */
 .fog-overlay {
   position: fixed;
-  inset: -150%;
+  inset: -50%;
   pointer-events: none;
   z-index: 0;
   background: 
     radial-gradient(circle at 20% 30%, rgba(200,200,220, 0.03) 0%, transparent 20%),
     radial-gradient(circle at 80% 70%, rgba(184, 151, 65, 0.02) 0%, transparent 20%);
   filter: blur(40px);
+  will-change: transform;
   animation: fog-drift 40s ease-in-out infinite alternate;
 }
 
@@ -61,4 +62,11 @@
   0% { transform: translate(0, 0) scale(1); }
   50% { transform: translate(-2%, 2%) scale(1.05); }
   100% { transform: translate(2%, -2%) scale(1); }
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fog-overlay {
+    animation: none;
+  }
 }

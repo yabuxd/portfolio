@@ -38,7 +38,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
             <a href="#home" className="font-cinzel text-2xl font-bold tracking-widest text-graphite-100 hover:text-gold-burned transition-colors">
-              <span className="text-gold-burned">O</span>G.
+              Yabu<span className="text-gold-burned">xd</span>.
             </a>
           </div>
           

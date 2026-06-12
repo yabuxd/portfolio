@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import portfolioImg from '../asset/portfolio.png';
+import portfolioImg from '../asset/portfolio.webp';
 
 export default function About() {
   return (
@@ -54,6 +54,10 @@ export default function About() {
                 <img 
                   src={portfolioImg} 
                   alt="Portfolio Profile" 
+                  width={600}
+                  height={600}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover filter brightness-90 contrast-110 transition-transform duration-700 group-hover:scale-105"
                 />
               </div>

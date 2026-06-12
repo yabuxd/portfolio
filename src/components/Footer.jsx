@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         <div className="mb-6">
           <a href="#home" className="font-cinzel text-2xl font-bold tracking-widest text-graphite-400 hover:text-gold-burned transition-colors">
-            <span className="text-gold-burned">O</span>G.
+            Yabu<span className="text-gold-burned">xd</span>.
           </a>
         </div>
         
@@ -15,7 +15,7 @@ export default function Footer() {
         </p>
         
         <p className="font-inter text-graphite-600 text-xs text-center">
-          &copy; {new Date().getFullYear()} All Rights Reserved. The Realm of OG.
+          &copy; {new Date().getFullYear()} All Rights Reserved. The Realm of Yabu<span className="text-gold-burned">xd</span>.
         </p>
       </div>
     </footer>

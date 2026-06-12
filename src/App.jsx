@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
+// Above-the-fold: load eagerly
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Experience from './components/Experience';
-import GithubStats from './components/GithubStats';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+// Below-the-fold: lazy load to reduce initial bundle
+const About = lazy(() => import('./components/About'));
+const Skills = lazy(() => import('./components/Skills'));
+const Projects = lazy(() => import('./components/Projects'));
+const Experience = lazy(() => import('./components/Experience'));
+const GithubStats = lazy(() => import('./components/GithubStats'));
+const Contact = lazy(() => import('./components/Contact'));
+const Footer = lazy(() => import('./components/Footer'));
 
 function App() {
   return (
@@ -19,15 +21,17 @@ function App() {
       
       <main className="relative z-10">
         <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <GithubStats />
-        <Contact />
+        <Suspense fallback={null}>
+          <About />
+          <Skills />
+          <Projects />
+          <Experience />
+          <GithubStats />
+          <Contact />
+        </Suspense>
       </main>
 
-      <Footer />
+      <Suspense fallback={null}><Footer /></Suspense>
     </div>
   )
 }
