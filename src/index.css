@@ -44,7 +44,7 @@
   }
 }
 
-/* Ambient Fog Effect — GPU-composited via will-change */
+/* Ambient Fog Effect: GPU-composited via will-change */
 .fog-overlay {
   position: fixed;
   inset: -50%;

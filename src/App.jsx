@@ -7,7 +7,6 @@ const About = lazy(() => import('./components/About'));
 const Skills = lazy(() => import('./components/Skills'));
 const Projects = lazy(() => import('./components/Projects'));
 const Experience = lazy(() => import('./components/Experience'));
-const GithubStats = lazy(() => import('./components/GithubStats'));
 const Contact = lazy(() => import('./components/Contact'));
 const Footer = lazy(() => import('./components/Footer'));
 
@@ -26,7 +25,6 @@ function App() {
           <Skills />
           <Projects />
           <Experience />
-          <GithubStats />
           <Contact />
         </Suspense>
       </main>

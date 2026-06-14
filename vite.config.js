@@ -16,7 +16,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          // Split framer-motion into its own chunk — only loads when needed
+          // Split framer-motion into its own chunk: only loads when needed
           'framer-motion': ['framer-motion'],
           // Split React runtime separately for better caching
           'react-vendor': ['react', 'react-dom'],

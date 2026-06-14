@@ -15,19 +15,16 @@ export default function About() {
           <div className="relative">
             <div className="absolute inset-0 bg-gold-burned/5 blur-3xl -z-10 rounded-full"></div>
             <h2 className="font-cinzel text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
-              THE <span className="text-gold-burned">ARCHITECT</span>
+              ABOUT <span className="text-gold-burned">ME</span>
             </h2>
             <div className="w-20 h-[1px] bg-gold-burned/50 mb-8"></div>
             
-            <div className="space-y-6 font-inter text-graphite-300 leading-relaxed">
+            <div className="space-y-5 font-inter text-graphite-300 leading-relaxed">
               <p>
-                I am a Computer Science student and software developer with a profound passion for building resilient, scalable, and visually striking applications. 
+                I'm a Computer Science student and software developer with a strong passion for building resilient, scalable applications, from the backend systems that power them to the frontend interfaces that users love. I care deeply about how complex systems work under the hood, and I bring that same rigor to every layer of the stack.
               </p>
               <p>
-                My journey in technology is driven by an insatiable curiosity for how complex systems operate under the hood—from low-level data structures and databases to modern, dynamic frontend frameworks like React.
-              </p>
-              <p>
-                I believe that excellent software should not only perform flawlessly but also provide an immersive and intuitive experience for the user. Every line of code is a brick in the fortress; every UI component is a window into the realm.
+                My work lives at the intersection of solid engineering and thoughtful design. I believe great software must perform flawlessly <em>and</em> feel intuitive, which is why I'm equally invested in architecture decisions, database design, and crafting polished UI experiences.
               </p>
             </div>
             
@@ -44,7 +41,6 @@ export default function About() {
           </div>
           
           <div className="relative group perspective-1000 hidden md:block">
-            {/* Cinematic framed element instead of a generic portrait (or can be replaced by user's photo) */}
             <div className="relative w-full aspect-[4/5] max-w-md mx-auto glass-card border border-graphite-700 p-4 transition-transform duration-700 hover:rotate-y-12">
               <div className="absolute inset-0 bg-gradient-to-tr from-graphite-900 via-transparent to-graphite-800 opacity-50"></div>
               <div className="w-full h-full border border-graphite-600/50 flex flex-col items-center justify-center relative overflow-hidden bg-graphite-950/80">
