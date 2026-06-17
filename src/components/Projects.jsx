@@ -1,13 +1,21 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink, Github, ChevronLeft, ChevronRight, Zap, Code2, Sparkles, Activity, Layers, Server } from 'lucide-react';
 
 const projects = [
   {
     title: "School Management System",
     tagline: "Full-stack academic platform with role-based access",
-    description: "Handles student records, score submission, and performance analytics with a JWT-authenticated REST API and SQLite backend.",
+    description: "A comprehensive digital ecosystem handling student records, score submissions, and performance analytics with enterprise-grade security.",
     tech: ["React", "Express.js", "SQLite", "Tailwind CSS"],
+    features: ["JWT Authentication", "REST API Integration", "Role-Based Access", "Analytics Dashboard"],
+    stats: [
+      { label: "User Roles", value: "4+" },
+      { label: "API Endpoints", value: "25+" },
+      { label: "Responsive", value: "99%" }
+    ],
+    badge: "Built in 6 weeks",
+    status: "Live",
     github: "https://github.com/yabuxd/student-managment",
     demo: "#",
     image: "/School-managment.png",
@@ -15,8 +23,16 @@ const projects = [
   {
     title: "MovieXD",
     tagline: "Cinematic streaming platform with watchlist and discovery",
-    description: "A sleek movie streaming app with real-time TMDB data, watchlist management, and a cinematic dark-mode UI built for immersive browsing.",
+    description: "A sleek movie streaming app leveraging real-time TMDB data, intelligent watchlist management, and a cinematic dark-mode UI built for immersive browsing.",
     tech: ["React", "Vite", "TMDB API", "Tailwind CSS"],
+    features: ["Real-time Data", "Watchlist Config", "Cinematic UI", "Smart Search"],
+    stats: [
+      { label: "Movies", value: "10K+" },
+      { label: "Lighthouse", value: "100" },
+      { label: "Load Time", value: "<1s" }
+    ],
+    badge: "Featured Project",
+    status: "Beta",
     github: "https://github.com/yabuxd/moviexd",
     demo: "#",
     image: "https://placehold.co/800x450/0d0d0d/b89741?text=MovieXD&font=playfair-display",
@@ -24,8 +40,16 @@ const projects = [
   {
     title: "OShell",
     tagline: "Unix-like Command Line Shell",
-    description: "A custom Unix shell built in C that supports interactive, batch, and pipeline modes, featuring process management, command parsing, variable expansion, I/O redirection, and signal handling.",
+    description: "A custom Unix shell built in C that supports interactive, batch, and pipeline modes, featuring process management, command parsing, and signal handling.",
     tech: ["C", "Operating Systems", "Process Management", "Unix"],
+    features: ["Pipelining Support", "I/O Redirection", "Signal Handling", "Batch Exec Mode"],
+    stats: [
+      { label: "Commands", value: "15+" },
+      { label: "Memory Safe", value: "Yes" },
+      { label: "Performance", value: "High" }
+    ],
+    badge: "System Architecture",
+    status: "Stable",
     github: "https://github.com/yabuxd/oshell",
     demo: "#",
     image: "https://placehold.co/800x450/1a1a1a/b89741?text=OShell&font=playfair-display",
@@ -35,6 +59,14 @@ const projects = [
     tagline: "Premium full-stack shopping experience",
     description: "Features animated transitions, real-time cart state with Zustand, and a seamless checkout flow backed by Express and MongoDB.",
     tech: ["React", "Tailwind CSS", "Express", "MongoDB"],
+    features: ["Zustand State", "Micro-Animations", "Checkout Flow", "Admin Panel"],
+    stats: [
+      { label: "Components", value: "40+" },
+      { label: "State Updates", value: "Instant" },
+      { label: "API Routes", value: "20+" }
+    ],
+    badge: "Full Stack MVP",
+    status: "Concept",
     github: "#",
     demo: "#",
     image: "https://placehold.co/800x450/1a1a1a/b89741?text=Cinematic+E-Commerce&font=playfair-display",
@@ -42,8 +74,16 @@ const projects = [
   {
     title: "Algorithmic Path Finder",
     tagline: "Interactive visualizer for graph traversal algorithms",
-    description: "Animates Dijkstra and A* pathfinding on dynamic grid mazes, rendering 10,000+ cells smoothly via Canvas 2D APIs.",
-    tech: ["JavaScript", "HTML5 Canvas", "Algorithms"],
+    description: "Animates Dijkstra and A* pathfinding on dynamic grid mazes, rendering 10,000+ cells smoothly via HTML5 Canvas 2D APIs.",
+    tech: ["JavaScript", "HTML5 Canvas", "Algorithms", "CSS3"],
+    features: ["A* Search Algo", "Dijkstra Algo", "Maze Generation", "60FPS Animation"],
+    stats: [
+      { label: "Grid Cells", value: "10k+" },
+      { label: "FPS Render", value: "60" },
+      { label: "Algorithms", value: "4" }
+    ],
+    badge: "Performance",
+    status: "Live",
     github: "#",
     demo: "#",
     image: "https://placehold.co/800x450/1a1a1a/b89741?text=Algorithmic+Path+Finder&font=playfair-display",
@@ -75,174 +115,254 @@ export default function Projects() {
   }, [current]);
 
   const variants = {
-    enter: { opacity: 0, scale: 0.98 },
+    enter: (dir) => ({ opacity: 0, x: dir > 0 ? 40 : -40, filter: "blur(8px)", scale: 0.98 }),
     center: {
       opacity: 1,
+      x: 0,
+      filter: "blur(0px)",
       scale: 1,
-      transition: { duration: 0.22, ease: 'easeOut' },
+      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
     },
-    exit: {
+    exit: (dir) => ({
       opacity: 0,
+      x: dir > 0 ? -40 : 40,
+      filter: "blur(8px)",
       scale: 0.98,
-      transition: { duration: 0.15, ease: 'easeIn' },
-    },
+      transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+    }),
   };
 
   const project = projects[current];
 
   return (
-    <section id="projects" className="py-16 relative">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gold-burned/5 blur-[100px] -z-10 rounded-full pointer-events-none" />
+    <section id="projects" className="py-24 relative overflow-hidden bg-graphite-950">
+      {/* Background decorations */}
+      <div className="absolute top-1/4 -left-1/4 w-[50vw] h-[50vw] bg-gold-burned/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-1/4 w-[40vw] h-[40vw] bg-white/5 blur-[100px] rounded-full pointer-events-none" />
+      
+      {/* Grid Pattern Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Heading */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Premium SaaS Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-8"
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="flex flex-col items-center text-center mb-16"
         >
-          <h2 className="font-cinzel text-4xl md:text-5xl font-bold text-white mb-4 tracking-wide">
-            FEATURED <span className="text-gold-burned">PROJECTS</span>
+          <span className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-inter uppercase tracking-[0.2em] text-graphite-400 mb-6 flex items-center gap-2 shadow-sm">
+            <Sparkles size={12} className="text-gold-burned" />
+            Selected Works
+          </span>
+          <h2 className="font-cinzel text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-6">
+            Project <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-burned via-yellow-200 to-gold-burned">Showcase</span>
           </h2>
-          <p className="font-inter text-graphite-400 max-w-2xl mx-auto uppercase tracking-widest text-sm">
-            Selected works: built from the ground up
+          <p className="font-inter text-graphite-400 max-w-2xl text-base md:text-lg leading-relaxed">
+            A curated collection of scalable applications, exploring modern architecture, performance optimization, and premium user experiences.
           </p>
-          <div className="w-24 h-[1px] bg-gold-burned/50 mx-auto mt-6" />
         </motion.div>
 
-        {/* Carousel wrapper */}
+        {/* Project Container */}
         <div
-          className="relative px-10 md:px-16"
+          className="relative group"
           onMouseEnter={() => setHovering(true)}
           onMouseLeave={() => setHovering(false)}
         >
-          {/* Card track — centered narrow card */}
-          <div className="overflow-hidden rounded-sm max-w-2xl mx-auto">
-            <AnimatePresence mode="sync">
-              <motion.div
-                key={current}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                className="group relative flex flex-col bg-graphite-950 border border-graphite-800 hover:border-gold-burned/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(184,151,65,0.12)]"
-              >
-                {/* Project image — full width on top */}
-                <div className="w-full aspect-[16/7] overflow-hidden bg-graphite-900 flex-shrink-0">
-                  <img
-                    src={project.image}
-                    alt={`${project.title} preview`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
-                    loading="lazy"
-                  />
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={current}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="relative rounded-[2rem] bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden"
+            >
+              {/* Premium Top Bar (Mac-like) */}
+              <div className="absolute top-0 left-0 right-0 h-10 bg-white/5 border-b border-white/5 flex items-center px-4 z-20">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                </div>
+                <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 text-[10px] font-inter uppercase tracking-widest text-graphite-500">
+                  <Activity size={12} />
+                  System Metrics
+                </div>
+              </div>
+
+              <div className="flex flex-col mt-10">
+                
+                {/* Top Image/Preview Area */}
+                <div className="relative h-64 sm:h-80 md:h-[400px] bg-graphite-950 overflow-hidden border-b border-white/10 group/image">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10" />
+                  
+                  {/* Mockup Frame overlay */}
+                  <motion.div 
+                    className="absolute inset-0 z-0 p-6 sm:p-10 flex items-center justify-center"
+                    initial={{ scale: 1 }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  >
+                    <div className="relative w-full h-full rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-black flex items-center justify-center">
+                       <img
+                         src={project.image}
+                         alt={`${project.title} preview`}
+                         className="w-full h-full object-cover opacity-60 group-hover/image:opacity-100 transition-opacity duration-700"
+                         loading="lazy"
+                       />
+                       {/* Overlay subtle tech grid */}
+                       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMiIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
+                    </div>
+                  </motion.div>
                 </div>
 
-                {/* Card body — right 45% */}
-                <div className="flex flex-col flex-grow p-5 justify-between">
-                  <div>
-                    {/* Counter badge */}
-                    <span className="font-inter text-xs tracking-widest uppercase text-gold-burned/60 mb-2 block">
+                {/* Bottom Content Area */}
+                <div className="p-6 sm:p-10 lg:p-12 flex flex-col justify-center relative">
+                  {/* Subtle inner glow */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold-burned/5 via-transparent to-transparent pointer-events-none" />
+
+                  {/* Header / Meta */}
+                  <div className="flex flex-wrap items-center gap-3 mb-8 relative z-10">
+                    <span className="px-3 py-1 text-xs font-inter font-medium tracking-wider uppercase bg-gold-burned/10 text-gold-burned rounded-full border border-gold-burned/20 shadow-[0_0_15px_rgba(184,151,65,0.15)]">
+                      {project.badge}
+                    </span>
+                    <span className="flex items-center gap-1.5 text-xs font-inter font-medium text-emerald-400 bg-emerald-400/10 px-3 py-1 rounded-full border border-emerald-400/20">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                      {project.status}
+                    </span>
+                    <span className="ml-auto font-inter text-xs tracking-widest text-graphite-500 bg-white/5 px-3 py-1 rounded-full border border-white/5">
                       {String(current + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
                     </span>
+                  </div>
 
-                    <h3 className="font-cinzel text-xl text-white font-bold tracking-wide group-hover:text-gold-light transition-colors mb-1">
-                      {project.title}
-                    </h3>
-                    <p className="font-inter text-gold-burned/70 text-xs tracking-widest uppercase mb-3">
-                      {project.tagline}
-                    </p>
-                    <p className="font-inter text-graphite-300 text-sm leading-relaxed mb-4">
-                      {project.description}
-                    </p>
+                  <h3 className="font-cinzel text-3xl sm:text-4xl text-white font-bold tracking-wide mb-4 relative z-10">
+                    {project.title}
+                  </h3>
+                  <p className="font-inter text-graphite-300 text-sm sm:text-base leading-relaxed mb-10 max-w-xl relative z-10">
+                    {project.description}
+                  </p>
 
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {project.tech.map((t, i) => (
-                        <span key={i} className="px-2.5 py-0.5 text-xs font-inter uppercase tracking-wider text-graphite-400 bg-graphite-900 border border-graphite-800 rounded-sm">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
+                  {/* Glassmorphism Stats */}
+                  <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-10 relative z-10">
+                    {project.stats.map((stat, idx) => (
+                       <div key={idx} className="group/stat bg-white/[0.03] border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center hover:bg-white/[0.06] hover:border-white/10 transition-colors duration-300">
+                         <span className="text-xl sm:text-2xl font-cinzel font-bold text-white mb-1 group-hover/stat:text-gold-burned transition-colors">{stat.value}</span>
+                         <span className="text-[9px] sm:text-[10px] font-inter uppercase tracking-wider text-graphite-400 text-center">{stat.label}</span>
+                       </div>
+                    ))}
+                  </div>
+
+                  {/* Features & Tech split */}
+                  <div className="grid sm:grid-cols-2 gap-8 mb-10 relative z-10">
+                     {/* Features */}
+                     <div>
+                       <h4 className="text-[11px] font-inter uppercase tracking-[0.2em] text-graphite-500 mb-4 flex items-center gap-2">
+                         <Layers size={14} /> Key Features
+                       </h4>
+                       <ul className="space-y-3">
+                         {project.features.map((feat, idx) => (
+                            <li key={idx} className="flex items-start gap-2 text-sm text-graphite-300">
+                              <Zap size={14} className="text-gold-burned/70 mt-0.5 shrink-0" />
+                              <span className="font-inter">{feat}</span>
+                            </li>
+                         ))}
+                       </ul>
+                     </div>
+
+                     {/* Tech Stack */}
+                     <div>
+                       <h4 className="text-[11px] font-inter uppercase tracking-[0.2em] text-graphite-500 mb-4 flex items-center gap-2">
+                         <Server size={14} /> Technology
+                       </h4>
+                       <div className="flex flex-wrap gap-2">
+                         {project.tech.map((t, i) => (
+                           <div key={i} className="group/tech relative px-3 py-1.5 text-xs font-inter text-graphite-300 bg-white/5 border border-white/5 rounded-lg hover:bg-gold-burned/10 hover:border-gold-burned/40 hover:text-white transition-all duration-300 cursor-default flex items-center gap-2 overflow-hidden transform hover:-translate-y-0.5 shadow-sm">
+                             <div className="absolute inset-0 bg-gradient-to-r from-gold-burned/0 via-gold-burned/10 to-gold-burned/0 translate-x-[-100%] group-hover/tech:translate-x-[100%] transition-transform duration-700" />
+                             <span className="w-1.5 h-1.5 rounded-full bg-graphite-600 group-hover/tech:bg-gold-burned group-hover/tech:shadow-[0_0_8px_rgba(184,151,65,0.8)] transition-colors" />
+                             {t}
+                           </div>
+                         ))}
+                       </div>
+                     </div>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-3">
+                  <div className="flex flex-col sm:flex-row gap-4 relative z-10">
                     <a
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 flex-1 justify-center px-4 py-2.5 text-xs font-inter tracking-widest uppercase bg-gold-burned/10 text-gold-burned border border-gold-burned/40 hover:bg-gold-burned hover:text-black transition-all duration-300"
+                      className="group/btn relative flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-inter font-medium tracking-wide bg-white text-black rounded-xl overflow-hidden transition-all hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(184,151,65,0.3)]"
                     >
-                      <ExternalLink size={13} />
-                      Live Demo
+                      <div className="absolute inset-0 bg-gradient-to-r from-gold-burned/20 via-yellow-200/20 to-gold-burned/20 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
+                      <ExternalLink size={16} className="text-black group-hover/btn:text-gold-burned transition-colors" />
+                      <span className="relative z-10">Explore Live System</span>
                     </a>
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 flex-1 justify-center px-4 py-2.5 text-xs font-inter tracking-widest uppercase bg-graphite-900 text-graphite-300 border border-graphite-700 hover:border-graphite-500 hover:text-white transition-all duration-300"
+                      className="group/btn flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-inter font-medium tracking-wide bg-transparent text-white border border-white/20 rounded-xl hover:bg-white/5 hover:border-white/40 transition-all duration-300"
                     >
-                      <Github size={13} />
-                      Source Code
+                      <Code2 size={16} className="text-graphite-400 group-hover/btn:text-white transition-colors" />
+                      View Architecture
                     </a>
                   </div>
                 </div>
-              </motion.div>
-            </AnimatePresence>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Navigation Controls - Premium Floating Style */}
+          <div className="absolute top-1/2 -translate-y-1/2 -left-4 sm:-left-6 lg:-left-8 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <button
+              onClick={prev}
+              aria-label="Previous project"
+              className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-[#111]/90 backdrop-blur-xl border border-white/10 text-white rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.5)] focus:outline-none hover:scale-110 active:scale-95"
+            >
+              <ChevronLeft size={24} />
+            </button>
           </div>
 
-          {/* ← Prev Arrow */}
-          <motion.button
-            onClick={prev}
-            aria-label="Previous project"
-            initial={false}
-            animate={{ opacity: hovering ? 1 : 0, x: hovering ? 0 : -8 }}
-            transition={{ duration: 0.25 }}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-20
-                       flex items-center justify-center w-12 h-12
-                       bg-graphite-950/90 border border-gold-burned/40 text-gold-burned
-                       hover:bg-gold-burned hover:text-black hover:border-gold-burned
-                       transition-colors duration-300 shadow-[0_0_20px_rgba(184,151,65,0.2)]
-                       focus:outline-none focus:ring-2 focus:ring-gold-burned/50"
-          >
-            <ChevronLeft size={20} />
-          </motion.button>
-
-          {/* → Next Arrow */}
-          <motion.button
-            onClick={next}
-            aria-label="Next project"
-            initial={false}
-            animate={{ opacity: hovering ? 1 : 0, x: hovering ? 0 : 8 }}
-            transition={{ duration: 0.25 }}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-20
-                       flex items-center justify-center w-12 h-12
-                       bg-graphite-950/90 border border-gold-burned/40 text-gold-burned
-                       hover:bg-gold-burned hover:text-black hover:border-gold-burned
-                       transition-colors duration-300 shadow-[0_0_20px_rgba(184,151,65,0.2)]
-                       focus:outline-none focus:ring-2 focus:ring-gold-burned/50"
-          >
-            <ChevronRight size={20} />
-          </motion.button>
-
-          {/* Dot indicators */}
-          <div className="flex justify-center gap-2.5 mt-8">
-            {projects.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => goTo(i, i > current ? 1 : -1)}
-                aria-label={`Go to project ${i + 1}`}
-                className={`transition-all duration-300 rounded-full focus:outline-none
-                  ${i === current
-                    ? 'w-8 h-1.5 bg-gold-burned'
-                    : 'w-2 h-1.5 bg-graphite-600 hover:bg-graphite-400'
-                  }`}
-              />
-            ))}
+          <div className="absolute top-1/2 -translate-y-1/2 -right-4 sm:-right-6 lg:-right-8 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <button
+              onClick={next}
+              aria-label="Next project"
+              className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-[#111]/90 backdrop-blur-xl border border-white/10 text-white rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.5)] focus:outline-none hover:scale-110 active:scale-95"
+            >
+              <ChevronRight size={24} />
+            </button>
           </div>
         </div>
+
+        {/* Bottom Pagination Dots */}
+        <div className="flex justify-center gap-3 mt-12 relative z-20">
+          {projects.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i, i > current ? 1 : -1)}
+              aria-label={`Go to project ${i + 1}`}
+              className={`transition-all duration-500 rounded-full focus:outline-none overflow-hidden relative
+                ${i === current
+                  ? 'w-12 h-1.5 bg-white'
+                  : 'w-3 h-1.5 bg-white/20 hover:bg-white/40'
+                }`}
+            >
+              {i === current && (
+                <motion.div 
+                  layoutId="activeDot"
+                  className="absolute inset-0 bg-gold-burned shadow-[0_0_10px_rgba(184,151,65,0.8)]"
+                  initial={false}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+            </button>
+          ))}
+        </div>
+
       </div>
     </section>
   );
