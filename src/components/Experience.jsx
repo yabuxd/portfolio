@@ -6,7 +6,7 @@ const timeline = [
     title: "Software Engineering Focus",
     subtitle: "Advanced Computer Science Studies",
     description: "Deepening expertise in systems architecture, advanced data structures, and building robust full-stack applications with modern web technologies."
-  },
+  }, 
   {
     year: "2023 – 2024",
     title: "Full-Stack Development",

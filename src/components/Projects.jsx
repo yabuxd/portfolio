@@ -1,8 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react';
-import SchoolManagementSystemImg from "/public/school-managment.png"
-
 
 const projects = [
   {
@@ -12,7 +10,7 @@ const projects = [
     tech: ["React", "Express.js", "SQLite", "Tailwind CSS"],
     github: "https://github.com/yabuxd/student-managment",
     demo: "#",
-    image: SchoolManagementSystemImg,
+    image: "/School-managment.png",
   },
   {
     title: "MovieXD",
