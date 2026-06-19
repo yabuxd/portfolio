@@ -1,94 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, ChevronLeft, ChevronRight, Zap, Code2, Sparkles, Activity, Layers, Server } from 'lucide-react';
-
-const projects = [
-  {
-    title: "School Management System",
-    tagline: "Full-stack academic platform with role-based access",
-    description: "A comprehensive digital ecosystem handling student records, score submissions, and performance analytics with enterprise-grade security.",
-    tech: ["React", "Express.js", "SQLite", "Tailwind CSS"],
-    features: ["JWT Authentication", "REST API Integration", "Role-Based Access", "Analytics Dashboard"],
-    stats: [
-      { label: "User Roles", value: "4+" },
-      { label: "API Endpoints", value: "25+" },
-      { label: "Responsive", value: "99%" }
-    ],
-    badge: "Built in 6 weeks",
-    status: "Live",
-    github: "https://github.com/yabuxd/student-managment",
-    demo: "#",
-    image: "/School-managment.png",
-  },
-  {
-    title: "MovieXD",
-    tagline: "Cinematic streaming platform with watchlist and discovery",
-    description: "A sleek movie streaming app leveraging real-time TMDB data, intelligent watchlist management, and a cinematic dark-mode UI built for immersive browsing.",
-    tech: ["React", "Vite", "TMDB API", "Tailwind CSS"],
-    features: ["Real-time Data", "Watchlist Config", "Cinematic UI", "Smart Search"],
-    stats: [
-      { label: "Movies", value: "10K+" },
-      { label: "Lighthouse", value: "100" },
-      { label: "Load Time", value: "<1s" }
-    ],
-    badge: "Featured Project",
-    status: "Beta",
-    github: "https://github.com/yabuxd/moviexd",
-    demo: "#",
-    image: "https://placehold.co/800x450/0d0d0d/b89741?text=MovieXD&font=playfair-display",
-  },
-  {
-    title: "OShell",
-    tagline: "Unix-like Command Line Shell",
-    description: "A custom Unix shell built in C that supports interactive, batch, and pipeline modes, featuring process management, command parsing, and signal handling.",
-    tech: ["C", "Operating Systems", "Process Management", "Unix"],
-    features: ["Pipelining Support", "I/O Redirection", "Signal Handling", "Batch Exec Mode"],
-    stats: [
-      { label: "Commands", value: "15+" },
-      { label: "Memory Safe", value: "Yes" },
-      { label: "Performance", value: "High" }
-    ],
-    badge: "System Architecture",
-    status: "Stable",
-    github: "https://github.com/yabuxd/oshell",
-    demo: "#",
-    image: "https://placehold.co/800x450/1a1a1a/b89741?text=OShell&font=playfair-display",
-  },
-  {
-    title: "Cinematic E-Commerce",
-    tagline: "Premium full-stack shopping experience",
-    description: "Features animated transitions, real-time cart state with Zustand, and a seamless checkout flow backed by Express and MongoDB.",
-    tech: ["React", "Tailwind CSS", "Express", "MongoDB"],
-    features: ["Zustand State", "Micro-Animations", "Checkout Flow", "Admin Panel"],
-    stats: [
-      { label: "Components", value: "40+" },
-      { label: "State Updates", value: "Instant" },
-      { label: "API Routes", value: "20+" }
-    ],
-    badge: "Full Stack MVP",
-    status: "Concept",
-    github: "#",
-    demo: "#",
-    image: "https://placehold.co/800x450/1a1a1a/b89741?text=Cinematic+E-Commerce&font=playfair-display",
-  },
-  {
-    title: "Algorithmic Path Finder",
-    tagline: "Interactive visualizer for graph traversal algorithms",
-    description: "Animates Dijkstra and A* pathfinding on dynamic grid mazes, rendering 10,000+ cells smoothly via HTML5 Canvas 2D APIs.",
-    tech: ["JavaScript", "HTML5 Canvas", "Algorithms", "CSS3"],
-    features: ["A* Search Algo", "Dijkstra Algo", "Maze Generation", "60FPS Animation"],
-    stats: [
-      { label: "Grid Cells", value: "10k+" },
-      { label: "FPS Render", value: "60" },
-      { label: "Algorithms", value: "4" }
-    ],
-    badge: "Performance",
-    status: "Live",
-    github: "#",
-    demo: "#",
-    image: "https://placehold.co/800x450/1a1a1a/b89741?text=Algorithmic+Path+Finder&font=playfair-display",
-  },
-];
+import { ExternalLink, ChevronLeft, ChevronRight, Code2, Sparkles, Activity } from 'lucide-react';
+import { projects } from '../data/projects';
 
 export default function Projects() {
   const [current, setCurrent] = useState(0);
@@ -241,52 +154,18 @@ export default function Projects() {
                   <h3 className="font-cinzel text-3xl sm:text-4xl text-white font-bold tracking-wide mb-4 relative z-10">
                     {project.title}
                   </h3>
-                  <p className="font-inter text-graphite-300 text-sm sm:text-base leading-relaxed mb-10 max-w-xl relative z-10">
+                  <p className="font-inter text-graphite-300 text-sm sm:text-base leading-relaxed mb-8 max-w-xl relative z-10">
                     {project.description}
                   </p>
 
                   {/* Glassmorphism Stats */}
-                  <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-10 relative z-10">
+                  <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-8 relative z-10">
                     {project.stats.map((stat, idx) => (
                        <div key={idx} className="group/stat bg-white/[0.03] border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center hover:bg-white/[0.06] hover:border-white/10 transition-colors duration-300">
                          <span className="text-xl sm:text-2xl font-cinzel font-bold text-white mb-1 group-hover/stat:text-gold-burned transition-colors">{stat.value}</span>
                          <span className="text-[9px] sm:text-[10px] font-inter uppercase tracking-wider text-graphite-400 text-center">{stat.label}</span>
                        </div>
                     ))}
-                  </div>
-
-                  {/* Features & Tech split */}
-                  <div className="grid sm:grid-cols-2 gap-8 mb-10 relative z-10">
-                     {/* Features */}
-                     <div>
-                       <h4 className="text-[11px] font-inter uppercase tracking-[0.2em] text-graphite-500 mb-4 flex items-center gap-2">
-                         <Layers size={14} /> Key Features
-                       </h4>
-                       <ul className="space-y-3">
-                         {project.features.map((feat, idx) => (
-                            <li key={idx} className="flex items-start gap-2 text-sm text-graphite-300">
-                              <Zap size={14} className="text-gold-burned/70 mt-0.5 shrink-0" />
-                              <span className="font-inter">{feat}</span>
-                            </li>
-                         ))}
-                       </ul>
-                     </div>
-
-                     {/* Tech Stack */}
-                     <div>
-                       <h4 className="text-[11px] font-inter uppercase tracking-[0.2em] text-graphite-500 mb-4 flex items-center gap-2">
-                         <Server size={14} /> Technology
-                       </h4>
-                       <div className="flex flex-wrap gap-2">
-                         {project.tech.map((t, i) => (
-                           <div key={i} className="group/tech relative px-3 py-1.5 text-xs font-inter text-graphite-300 bg-white/5 border border-white/5 rounded-lg hover:bg-gold-burned/10 hover:border-gold-burned/40 hover:text-white transition-all duration-300 cursor-default flex items-center gap-2 overflow-hidden transform hover:-translate-y-0.5 shadow-sm">
-                             <div className="absolute inset-0 bg-gradient-to-r from-gold-burned/0 via-gold-burned/10 to-gold-burned/0 translate-x-[-100%] group-hover/tech:translate-x-[100%] transition-transform duration-700" />
-                             <span className="w-1.5 h-1.5 rounded-full bg-graphite-600 group-hover/tech:bg-gold-burned group-hover/tech:shadow-[0_0_8px_rgba(184,151,65,0.8)] transition-colors" />
-                             {t}
-                           </div>
-                         ))}
-                       </div>
-                     </div>
                   </div>
 
                   {/* Action Buttons */}

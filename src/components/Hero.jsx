@@ -1,13 +1,14 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, Download } from 'lucide-react';
-
-const stats = [
-  { value: '4', label: 'Projects Built' },
-  { value: '2+', label: 'Years Coding' },
-  { value: '15+', label: 'Technologies' },
-];
+import { projects } from '../data/projects';
 
 export default function Hero() {
+  const stats = [
+    { value: `${projects.length}+`, label: 'Projects Built' },
+    { value: '2+', label: 'Years Coding' },
+    { value: '15+', label: 'Technologies' },
+  ];
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-graphite-900/40 via-graphite-950 to-graphite-950 -z-10"></div>
@@ -57,8 +58,8 @@ export default function Hero() {
             <div className="absolute inset-0 h-full w-full bg-gold-burned scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out -z-0"></div>
           </a>
           <a
-            href="/resume.pdf"
-            download
+            href="../Yabtsega_Tolera_Resume.pdf"
+            download="Yabtsega_Tolera_Resume.pdf"
             id="resume-download-btn"
             className="group relative px-8 py-3 bg-gold-burned text-black font-inter tracking-widest uppercase text-sm font-semibold hover:bg-gold-burned/80 transition-all duration-300 flex items-center gap-2"
           >
