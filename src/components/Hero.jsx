@@ -58,8 +58,8 @@ export default function Hero() {
             <div className="absolute inset-0 h-full w-full bg-gold-burned scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out -z-0"></div>
           </a>
           <a
-            href="../Yabtsega_Tolera_Resume.pdf"
-            download="Yabtsega_Tolera_Resume.pdf"
+            href="/personal-resume.pdf"
+            download="personal-resume.pdf"
             id="resume-download-btn"
             className="group relative px-8 py-3 bg-gold-burned text-black font-inter tracking-widest uppercase text-sm font-semibold hover:bg-gold-burned/80 transition-all duration-300 flex items-center gap-2"
           >
