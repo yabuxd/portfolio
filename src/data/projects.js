@@ -12,7 +12,7 @@ export const projects = [
     status: "Live",
     github: "https://github.com/yabuxd/student-managment",
     demo: "#",
-    image: "/School-managment.png",
+    image: "/School-managment.webp",
   },
   {
     title: "MovieXD",
@@ -27,7 +27,7 @@ export const projects = [
     status: "Beta",
     github: "https://github.com/yabuxd/moviexd",
     demo: "https://movyxd.netlify.app",
-    image: "/moviexd.png",
+    image: "/moviexd.webp",
   },
   {
     title: "OShell",
