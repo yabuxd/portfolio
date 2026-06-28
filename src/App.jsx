@@ -1,4 +1,6 @@
 import React, { lazy, Suspense } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 // Above-the-fold: load eagerly
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -9,15 +11,16 @@ const Projects = lazy(() => import('./components/Projects'));
 const Experience = lazy(() => import('./components/Experience'));
 const Contact = lazy(() => import('./components/Contact'));
 const Footer = lazy(() => import('./components/Footer'));
+const Chatbot = lazy(() => import('./components/Chatbot'));
 
-function App() {
+function Portfolio() {
   return (
     <div className="relative min-h-screen text-graphite-100 selection:bg-gold-burned selection:text-black">
       {/* Background ambient fog */}
       <div className="fog-overlay" />
-      
+
       <Navbar />
-      
+
       <main className="relative z-10">
         <Hero />
         <Suspense fallback={null}>
@@ -31,7 +34,25 @@ function App() {
 
       <Suspense fallback={null}><Footer /></Suspense>
     </div>
-  )
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Portfolio />} />
+        <Route
+          path="/chatbot"
+          element={
+            <Suspense fallback={null}>
+              <Chatbot />
+            </Suspense>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, Download } from 'lucide-react';
+import { ChevronDown, Download, Bot } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 
 export default function Hero() {
@@ -69,6 +70,13 @@ export default function Hero() {
           <a href="#contact" className="px-8 py-3 text-graphite-300 font-inter tracking-widest uppercase text-sm hover:text-white transition-colors relative after:content-[''] after:absolute after:bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1px] after:bg-white hover:after:w-1/2 after:transition-all after:duration-300">
             Contact Me
           </a>
+          <Link
+            to="/chatbot"
+            className="group flex items-center gap-2 px-8 py-3 bg-transparent text-gold-burned font-inter tracking-widest uppercase text-sm border border-gold-burned/60 hover:bg-gold-burned/10 transition-all duration-300"
+          >
+            <Bot size={15} strokeWidth={2} />
+            Ask me anything
+          </Link>
         </motion.div>
       </div>
 

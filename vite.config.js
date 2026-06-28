@@ -6,9 +6,7 @@ import compression from 'vite-plugin-compression'
 export default defineConfig({
   plugins: [
     react(),
-    // Brotli compression (best ratio)
     compression({ algorithm: 'brotliCompress', ext: '.br' }),
-    // Gzip fallback
     compression({ algorithm: 'gzip', ext: '.gz' }),
   ],
   build: {
@@ -16,9 +14,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          // Split framer-motion into its own chunk: only loads when needed
           'framer-motion': ['framer-motion'],
-          // Split React runtime separately for better caching
           'react-vendor': ['react', 'react-dom'],
         },
       },

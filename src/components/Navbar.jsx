@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Bot } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const navItems = [
   { name: 'Home', href: '#home' },
@@ -54,6 +55,13 @@ export default function Navbar() {
                   {item.name}
                 </a>
               ))}
+              <Link
+                to="/chatbot"
+                className="flex items-center gap-1.5 font-inter text-sm tracking-widest uppercase text-gold-burned border border-gold-burned/50 hover:bg-gold-burned/10 transition-all duration-200 px-3 py-2"
+              >
+                <Bot size={13} strokeWidth={2} />
+                AI Chat
+              </Link>
             </div>
           </div>
 
@@ -89,6 +97,14 @@ export default function Navbar() {
                   {item.name}
                 </a>
               ))}
+              <Link
+                to="/chatbot"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center gap-2 font-inter text-base tracking-widest uppercase text-gold-burned hover:bg-gold-burned/10 transition-colors px-3 py-4 rounded-md border border-gold-burned/30 mx-1"
+              >
+                <Bot size={15} strokeWidth={2} />
+                AI Chat
+              </Link>
             </div>
           </motion.div>
         )}
