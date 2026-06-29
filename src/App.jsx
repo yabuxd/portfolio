@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // Above-the-fold: load eagerly
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import AIChatButton from './components/AIChatButton';
 // Below-the-fold: lazy load to reduce initial bundle
 const About = lazy(() => import('./components/About'));
 const Skills = lazy(() => import('./components/Skills'));
@@ -33,6 +34,7 @@ function Portfolio() {
       </main>
 
       <Suspense fallback={null}><Footer /></Suspense>
+      <AIChatButton />
     </div>
   );
 }

@@ -14,9 +14,19 @@ export default function About() {
         >
           <div className="relative">
             <div className="absolute inset-0 bg-gold-burned/5 blur-3xl -z-10 rounded-full"></div>
-            <h2 className="font-cinzel text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
-              ABOUT <span className="text-gold-burned">ME</span>
-            </h2>
+            <div className="flex items-center gap-4 mb-6">
+              <h2 className="font-cinzel text-4xl md:text-5xl font-bold text-white tracking-wide">
+                ABOUT <span className="text-gold-burned">ME</span>
+              </h2>
+              {/* Circular profile image next to heading on mobile/tablet */}
+              <div className="lg:hidden w-14 h-14 rounded-full border border-gold-burned/40 overflow-hidden bg-graphite-950/80 flex-shrink-0 shadow-[0_0_15px_rgba(184,151,65,0.2)]">
+                <img 
+                  src={portfolioImg} 
+                  alt="Portfolio Profile" 
+                  className="w-full h-full object-cover filter brightness-95 contrast-105"
+                />
+              </div>
+            </div>
             <div className="w-20 h-[1px] bg-gold-burned/50 mb-8"></div>
             
             <div className="space-y-5 font-inter text-graphite-300 leading-relaxed">
@@ -40,8 +50,8 @@ export default function About() {
             </div>
           </div>
           
-          <div className="relative group perspective-1000 hidden md:block">
-            <div className="relative w-full aspect-[4/5] max-w-md mx-auto glass-card border border-graphite-700 p-4 transition-transform duration-700 hover:rotate-y-12">
+          <div className="relative group perspective-1000 mt-12 lg:mt-0 hidden lg:block">
+            <div className="relative w-full aspect-[4/5] max-w-[220px] md:max-w-xs lg:max-w-md mx-auto glass-card border border-graphite-700 p-3 md:p-4 transition-transform duration-700 hover:rotate-y-12">
               <div className="absolute inset-0 bg-gradient-to-tr from-graphite-900 via-transparent to-graphite-800 opacity-50"></div>
               <div className="w-full h-full border border-graphite-600/50 flex flex-col items-center justify-center relative overflow-hidden bg-graphite-950/80">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-gold-burned/50 to-transparent z-10"></div>
